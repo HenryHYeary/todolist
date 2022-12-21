@@ -149,8 +149,6 @@ class TodoList {
   }
 }
 
-// Omitted code
-
 let todo1 = new Todo("Buy milk");
 let todo2 = new Todo("Clean room");
 let todo3 = new Todo("Go to the gym");
