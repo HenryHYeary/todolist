@@ -25,4 +25,50 @@ describe('TodoList', () => {
   test('toArray method returns an array copy of the list', () => {
     expect(list.toArray()).toEqual([todo1, todo2, todo3]);
   });
+
+  test('calling first returns the first object in the list', () => {
+    expect(list.first()).toEqual(todo1);
+  });
+
+  test('calling last returns the last object in the list', () => {
+    expect(list.last()).toEqual(todo3);
+  });
+
+  test('calling shift removes and returns the first item in the list', () => {
+    expect(list.shift()).toEqual(todo1);
+    expect(list.size()).toBe(2);
+  });
+
+  test('calling pop removes and returns the last item in the list', () => {
+    expect(list.pop()).toEqual(todo3);
+    expect(list.size()).toBe(2);
+  });
+
+  test('TypeError is thrown when you attempt to add a non Todo object to list', () => {
+    expect(() => list.add(1)).toThrow(TypeError);
+    expect(() => list.add('Monday')).toThrow(TypeError);
+    expect(() => list.add(new TodoList).toThrow(TypeError));
+  });
+
+  test('ReferenceError is thrown when you call itemAt with an index with no element', () => {
+    expect(list.itemAt(1)).toEqual(todo2);
+    expect(() => list.itemAt(3)).toThrow(ReferenceError);
+  });
+
+  test('Marks an item done. Raises ReferenceError if invalid index', () => {
+    expect(() => list.markDoneAt(5)).toThrow(ReferenceError);
+
+    list.markDoneAt(2);
+    expect(todo3.isDone()).toBe(true);
+    expect(todo1.isDone()).toBe(false);
+    expect(todo2.isDone()).toBe(false);
+  });
+
+  test('Marks an item undone. Throws ReferenceError if invalid index', () => {
+    expect(() => list.markUndoneAt(4)).toThrow(ReferenceError);
+
+    list.markDoneAt(2);
+    list.markUndoneAt(2);
+    expect(todo3.isDone()).toBe(false);
+  });
 });
