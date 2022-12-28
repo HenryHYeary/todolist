@@ -137,4 +137,21 @@ describe('TodoList', () => {
 
     expect(filteredList).toEqual(comparisonList);
   });
+
+  test('isDone verifies that every todo in the list is marked done', () => {
+    list.markAllDone();
+
+    expect(list.isDone()).toBe(true);
+  });
+
+  test('allDone returns a new TodoList object that contains all completed todos', () => {
+    list.markDoneAt(0);
+    list.markDoneAt(2);
+
+    let comparisonList = new TodoList("Today's Todos");
+    comparisonList.add(todo1);
+    comparisonList.add(todo3);
+
+    expect(list.allDone()).toEqual(comparisonList);
+  });
 });
