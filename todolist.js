@@ -52,9 +52,7 @@ class TodoList {
   }
 
   removeAt(index) {
-    let arr = [];
-    arr.push(this.todos.splice(index, 1));
-    return arr;
+    if (this.itemAt(index)) this.todos.splice(index, 1);
   }
 
   toString() {
