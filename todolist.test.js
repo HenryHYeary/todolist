@@ -55,7 +55,7 @@ describe('TodoList', () => {
     expect(() => list.itemAt(3)).toThrow(ReferenceError);
   });
 
-  test('arks an item done. Raises ReferenceError if invalid index', () => {
+  test('Marks an item done. Raises ReferenceError if invalid index', () => {
     expect(() => list.markDoneAt(5)).toThrow(ReferenceError);
 
     list.markDoneAt(2);
